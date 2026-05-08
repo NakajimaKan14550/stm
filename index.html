@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【深層解説】New Spaceを支える半導体プロセス | クロニクス株式会社</title>
+    <title>【究極解説】STマイクロ宇宙用半導体とNew Space | クロニクス株式会社</title>
     <style>
         :root {
             --primary: #091a2d;
@@ -15,30 +15,34 @@
         }
 
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.8; margin: 0; }
-        
-        /* Navigation */
         nav { background: var(--primary); padding: 15px 5%; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .logo { height: 45px; cursor: pointer; }
 
-        /* Hero */
         .hero { background: linear-gradient(rgba(9, 26, 45, 0.85), rgba(9, 26, 45, 0.85)), url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=1200') center/cover; color: white; padding: 150px 5% 100px; text-align: center; }
         .hero h1 { font-size: 3.2rem; margin-bottom: 25px; font-weight: 800; letter-spacing: -0.02em; }
         .hero p { font-size: 1.3rem; max-width: 900px; margin: 0 auto; opacity: 0.95; line-height: 1.6; }
 
-        /* Container & Layout */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
         .intro-text { font-size: 1.15rem; margin-bottom: 80px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
 
         section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 120px; align-items: start; }
         @media (max-width: 900px) { section { grid-template-columns: 1fr; gap: 40px; } }
 
-        h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; line-height: 1.2; }
-        h3 { font-size: 1.4rem; color: var(--accent); margin-top: 25px; margin-bottom: 15px; }
+        h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; line-height: 1.2; border-left: 8px solid var(--accent); padding-left: 20px; }
+        h3 { font-size: 1.6rem; color: var(--primary); margin-top: 30px; margin-bottom: 15px; display: flex; align-items: center; }
+        h3::before { content: '■'; color: var(--accent); margin-right: 10px; font-size: 1rem; }
 
         .content ul { padding-left: 20px; }
         .content li { margin-bottom: 12px; }
 
-        .highlight-card { background: var(--white); padding: 40px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+        .highlight-card { background: var(--white); padding: 40px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); margin-top: 20px; }
+        .info-box { background: #f1f5f9; padding: 25px; border-radius: 8px; margin-top: 20px; font-size: 0.95rem; }
+
+        /* スクリーニング比較テーブル */
+        .table-wrap { overflow-x: auto; margin: 40px 0; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid var(--border); padding: 15px; text-align: left; font-size: 0.9rem; }
+        th { background: var(--primary); color: white; }
 
         /* クリック拡大機能 (Pure CSS) */
         .zoom-wrap { position: relative; }
@@ -49,17 +53,17 @@
         
         .zoom-input:checked + .zoom-label { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; background: rgba(9, 26, 45, 0.98); display: flex; align-items: center; justify-content: center; cursor: zoom-out; border-radius: 0; border: none; }
         .zoom-input:checked + .zoom-label img { width: auto; max-width: 85%; max-height: 85%; }
-        .zoom-input:checked + .zoom-label::after { content: "CLOSE ✕"; position: absolute; top: 40px; right: 40px; color: white; background: var(--accent); padding: 12px 25px; font-weight: bold; border-radius: 8px; font-size: 1rem; }
+        .zoom-input:checked + .zoom-label::after { content: "CLOSE ✕"; position: absolute; top: 40px; right: 40px; color: white; background: var(--accent); padding: 12px 25px; font-weight: bold; border-radius: 8px; }
 
-        /* Footer (Specified) */
+        /* Footer */
         footer { background: var(--primary); color: white; padding: 100px 5% 50px; }
         .footer-content { max-width: 1000px; margin: 0 auto; text-align: center; }
         .footer-info { margin: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
         .company-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; }
         .footer-address { font-style: normal; line-height: 1.8; opacity: 0.85; font-weight: 300; }
         .contact-grid { display: flex; justify-content: center; gap: 40px; margin: 25px 0; }
-        .btn-contact { display: inline-block; background: var(--accent); color: white; padding: 20px 50px; text-decoration: none; border-radius: 4px; font-weight: 700; transition: all 0.3s ease; font-size: 1.1rem; }
-        .btn-contact:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3); }
+        .btn-contact { display: inline-block; background: var(--accent); color: white; padding: 20px 50px; text-decoration: none; border-radius: 4px; font-weight: 700; transition: all 0.3s ease; }
+        .btn-contact:hover { background: #ea580c; transform: translateY(-2px); }
 
     </style>
 </head>
@@ -99,7 +103,31 @@
         </div>
     </section>
 
-    <section>
+    <section style="display: block;">
+        <h2>「100個の中からエリートの10個を選ぶ」品質管理</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+            <div class="content">
+                <p>STMの宇宙用デバイスは、フランス・レンヌ等の自社Fabにて、ウェハ検査からパッケージングまで一貫して管理されます。修理不能な宇宙空間において、故障の芽を事前に摘み取る「スクリーニング」こそが信頼性の源泉です。</p>
+                <h3>厳しいスクリーニング試験項目</h3>
+                <ul>
+                    <li><strong>バーンイン（Burn-in）:</strong> 高温負荷で初期故障個体を排除。</li>
+                    <li><strong>温度サイクル試験:</strong> -55℃〜+125℃の激しい熱変化を与え、構造的欠陥を確認。</li>
+                    <li><strong>リーク試験:</strong> 真空環境に対応する完全密閉（ハーメチック）の検証。</li>
+                    <li><strong>定加速度試験:</strong> 打ち上げ時の強大なGに耐えうるワイヤボンディング強度を確認。</li>
+                </ul>
+            </div>
+            <div class="highlight-card">
+                <h3>New Space（樹脂パッケージ）の罠</h3>
+                <p>コスト優先の樹脂パッケージは、取り扱いに細心の注意が必要です。</p>
+                <div class="info-box">
+                    <strong>⚠️ 厳禁：素手での接触</strong><br>
+                    皮脂や湿気が樹脂の微細な穴から浸透し、宇宙空間での<strong>「ポップコーン現象（パッケージ破裂）」</strong>や、静電気による内部回路の瞬時焼き切れ（ESD破壊）を招きます。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="margin-top: 100px;">
         <div class="zoom-wrap">
             <input type="checkbox" id="zoom2" class="zoom-input">
             <label for="zoom2" class="zoom-label">
@@ -116,6 +144,39 @@
                     <li><strong>電力効率の最適化:</strong> ボディバイアス制御により、低電圧動作でも高い処理能力を維持。衛星の限られた電力を有効活用します。</li>
                 </ul>
             </div>
+            <div class="info-box" style="background: #fff7ed; border: 1px solid var(--accent);">
+                <strong>【他社向けOEM提供】</strong><br>
+                STMはこの圧倒的な製造プラットフォームを自社製品だけでなく、他社向けRad-Hard ASIC製造（OEM）としても提供。宇宙で「確実に動く」ための標準基盤となっています。
+            </div>
+        </div>
+    </section>
+
+    <section style="display: block;">
+        <h2>プロジェクトを加速させる「実務ヒアリング」</h2>
+        <p>宇宙プロジェクトのリードタイムは長く、FM品（フライト用）で24週間以上を要します。スムーズな供給には、早期のミッションプロファイル共有が不可欠です。</p>
+        <div class="table-wrap">
+            <table>
+                <tr>
+                    <th>項目</th>
+                    <th>確認のポイント</th>
+                </tr>
+                <tr>
+                    <td>軌道・ミッション期間</td>
+                    <td>GEO / LEO / 月探査。稼働期間（5年、15年など）</td>
+                </tr>
+                <tr>
+                    <td>放射線耐性要求</td>
+                    <td>TID要求値（krad）、SEE（SELフリー要求の有無）</td>
+                </tr>
+                <tr>
+                    <td>パッケージ・グレード</td>
+                    <td>セラミック（Flight級） / 樹脂（New Space級）</td>
+                </tr>
+                <tr>
+                    <td>商流・スケジュール</td>
+                    <td>試作（EM品）時期、量産（FM品）時期、最終ユーザー（EUS）</td>
+                </tr>
+            </table>
         </div>
     </section>
 </div>
