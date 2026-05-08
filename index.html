@@ -3,265 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【究極解説】STマイクロ宇宙用半導体とNew Space | クロニクス株式会社</title>
+    <title>STMicroelectronics 宇宙用半導体ソリューション | クロニクス株式会社</title>
     <style>
         :root {
             --primary: #091a2d;
             --accent: #f97316;
             --bg: #f8fafc;
             --text: #1e293b;
-            --text-light: #64748b;
             --white: #ffffff;
             --border: #e2e8f0;
-            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
         }
 
-        body { 
-            font-family: "Inter", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text); 
-            line-height: 1.8; 
-            margin: 0; 
-            word-break: break-word;
-        }
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.8; margin: 0; }
+        nav { background: var(--primary); padding: 15px 5%; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .logo { height: 45px; cursor: pointer; }
 
-        /* Navigation */
-        nav { 
-            background: var(--primary); 
-            padding: 0 5%; 
-            height: 70px;
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
-        }
-        .nav-logos { display: flex; align-items: center; gap: 20px; }
-        .logo-main { height: 32px; }
-        .logo-sub { height: 28px; filter: brightness(0) invert(1); opacity: 0.9; }
-        .nav-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
+        .hero { background: linear-gradient(rgba(9, 26, 45, 0.85), rgba(9, 26, 45, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200') center/cover; color: white; padding: 150px 5% 100px; text-align: center; }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 25px; font-weight: 800; letter-spacing: -0.02em; }
+        .hero p { font-size: 1.3rem; max-width: 900px; margin: 0 auto; opacity: 0.95; line-height: 1.6; }
 
-        /* Hero Section */
-        .hero { 
-            background: linear-gradient(rgba(9, 26, 45, 0.8), rgba(9, 26, 45, 0.9)), url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=1200') center/cover; 
-            color: white; 
-            padding: 120px 5% 100px; 
-            text-align: center; 
-        }
-        .hero-st-logo { width: 80px; margin-bottom: 30px; filter: brightness(0) invert(1); }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 25px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; }
-        .hero p { font-size: clamp(1rem, 2vw, 1.25rem); max-width: 800px; margin: 0 auto; opacity: 0.9; font-weight: 300; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        .intro-text { font-size: 1.15rem; margin-bottom: 80px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto; }
 
-        /* Container & Grid */
-        .container { max-width: 1100px; margin: 0 auto; padding: 80px 24px; }
-        .intro-text { font-size: 1.2rem; margin-bottom: 100px; text-align: center; max-width: 850px; margin-left: auto; margin-right: auto; color: var(--text-light); }
-
-        section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 120px; align-items: start; }
-        .section-full { display: block; margin-bottom: 120px; }
+        section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 120px; align-items: start; }
         @media (max-width: 900px) { section { grid-template-columns: 1fr; gap: 40px; } }
 
-        /* Typography */
-        h2 { font-size: 2rem; color: var(--primary); margin-bottom: 30px; line-height: 1.3; font-weight: 700; position: relative; }
-        h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin-top: 15px; }
-        h3 { font-size: 1.4rem; color: var(--primary); margin-top: 30px; margin-bottom: 15px; font-weight: 700; }
-        
-        .content p { margin-bottom: 20px; }
-        .content ul { padding-left: 20px; list-style: none; }
-        .content li { margin-bottom: 12px; position: relative; padding-left: 25px; }
-        .content li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+        h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; line-height: 1.2; border-left: 8px solid var(--accent); padding-left: 20px; }
+        h3 { font-size: 1.5rem; color: var(--primary); margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
 
-        /* UI Elements */
-        .highlight-card { 
-            background: var(--white); 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: var(--card-shadow); 
-            border: 1px solid var(--border); 
-            transition: transform 0.3s ease;
-        }
-        .highlight-card:hover { transform: translateY(-5px); }
-        
-        .info-box { 
-            background: #fefce8; 
-            padding: 25px; 
-            border-radius: 12px; 
-            margin-top: 25px; 
-            font-size: 0.95rem; 
-            border-left: 4px solid #eab308;
-            color: #854d0e;
-        }
+        .content ul { padding-left: 20px; margin-bottom: 20px; }
+        .content li { margin-bottom: 12px; }
 
-        /* Table Design */
-        .table-wrap { overflow-x: auto; margin: 40px 0; border-radius: 12px; border: 1px solid var(--border); }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { padding: 18px; text-align: left; font-size: 0.95rem; border-bottom: 1px solid var(--border); }
-        th { background: #f1f5f9; color: var(--primary); font-weight: 700; }
-        tr:last-child td { border-bottom: none; }
+        .highlight-card { background: var(--white); padding: 40px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+        .warning-box { background: #fff7ed; border-left: 4px solid var(--accent); padding: 20px; margin: 20px 0; font-size: 0.95rem; }
 
-        /* Image Zoom */
-        .zoom-label { cursor: zoom-in; display: block; border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); border: 1px solid var(--border); transition: 0.3s; }
-        .zoom-label:hover { filter: brightness(1.1); }
+        /* クリック拡大機能 (Pure CSS) */
+        .zoom-wrap { position: relative; }
+        .zoom-input { display: none; }
+        .zoom-label { cursor: zoom-in; display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.3s; }
+        .zoom-label:hover { transform: scale(1.02); }
         .zoom-label img { width: 100%; display: block; }
-        .zoom-input:checked + .zoom-label { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; background: rgba(9, 26, 45, 0.98); display: flex; align-items: center; justify-content: center; cursor: zoom-out; }
+        
+        .zoom-input:checked + .zoom-label { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; background: rgba(9, 26, 45, 0.98); display: flex; align-items: center; justify-content: center; cursor: zoom-out; border-radius: 0; border: none; }
+        .zoom-input:checked + .zoom-label img { width: auto; max-width: 85%; max-height: 85%; }
+        .zoom-input:checked + .zoom-label::after { content: "CLOSE ✕"; position: absolute; top: 40px; right: 40px; color: white; background: var(--accent); padding: 12px 25px; font-weight: bold; border-radius: 8px; }
 
         /* Footer */
-        footer { background: var(--primary); color: white; padding: 80px 5% 40px; }
+        footer { background: var(--primary); color: white; padding: 100px 5% 50px; }
         .footer-content { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .footer-logo { height: 40px; margin-bottom: 30px; filter: brightness(1.5); }
-        .btn-contact { 
-            display: inline-block; 
-            background: var(--accent); 
-            color: white; 
-            padding: 18px 45px; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: 700; 
-            transition: 0.3s;
-            margin-top: 30px;
-            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
-        }
-        .btn-contact:hover { background: #fb923c; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(249, 115, 22, 0.4); }
+        .footer-info { margin: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
+        .company-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; }
+        .footer-address { font-style: normal; line-height: 1.8; opacity: 0.85; }
+        .contact-grid { display: flex; justify-content: center; gap: 40px; margin: 25px 0; }
+        .btn-contact { display: inline-block; background: var(--accent); color: white; padding: 20px 50px; text-decoration: none; border-radius: 4px; font-weight: 700; transition: all 0.3s ease; }
+        .btn-contact:hover { background: #ea580c; transform: translateY(-2px); }
 
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="nav-logos">
-        <a href="https://nakajimakan14550.github.io/home/">
-            <img src="logo.png" alt="CHRONIX" class="logo-main">
-        </a>
-        <div class="nav-divider"></div>
-        <img src="stm.png" alt="STMicroelectronics" class="logo-sub">
-    </div>
+    <a href="https://nakajimakan14550.github.io/home/">
+        <img src="logo.png" alt="CHRONIX" class="logo">
+    </a>
 </nav>
 
 <div class="hero">
-    <img src="stm.png" alt="STMicroelectronics" class="hero-st-logo">
     <h1>New Spaceの衝撃と半導体</h1>
-    <p>低軌道コンステレーションが求める「信頼性」と「量産性」の不可避な交差点。STMicroelectronicsのFD-SOI技術が、宇宙ビジネスの物理的限界を再定義します。</p>
+    <p>低軌道コンステレーションが求める「信頼性」と「量産性」の不可避な交差点。<br>STMicroelectronicsのFD-SOI技術が、宇宙ビジネスの物理的限界を再定義します。</p>
 </div>
 
 <div class="container">
     <div class="intro-text">
-        宇宙産業は一過性の「国家プロジェクト」から継続的な「商業インフラ」へと変貌を遂げました。この変化は半導体に対し、従来の耐放射線性スペックに加え、圧倒的な量産性とコスト効率を求めています。
+        宇宙産業は「国家主導のGEO」から「民間主導のLEOコンステレーション」へ、パラダイムシフトの真っ只中にあります。STマイクロエレクトロニクスは、フランス・レンヌの自社拠点を軸に、ウェハプロセスからスクリーニングまで一貫した「Rad-Hard」の供給体制を維持し、次世代衛星ビジネスを支えています。
     </div>
 
     <section>
         <div class="content">
             <h2>GEOからLEOへ：<br>市場のパラダイムシフト</h2>
-            <p>かつての宇宙用半導体は、静止軌道（GEO）における20年以上の寿命を保証するため、過剰なまでのシールドと、一点ものの製造プロセスに依存していました。</p>
-            <h3>新たな課題</h3>
+            <p>かつての宇宙用半導体は、静止軌道（GEO）における長期寿命を保証するため、過剰なまでのシールドと、一点ものの製造プロセスに依存していました。</p>
+            <h3>宇宙開発の新潮流</h3>
             <ul>
-                <li><strong>コンステレーションの経済性:</strong> 数千基の衛星を打ち上げる際、1個数十万円のセラミック部品は採算を破壊します。</li>
-                <li><strong>ミッション寿命の短縮:</strong> LEO衛星の寿命は5〜7年。過剰な信頼性よりも、適切なコストでの「量産性」が優先されます。</li>
+                <li><strong>New Spaceの台頭:</strong> 1基あたりのコスト削減と短期間の設計サイクルが必須。</li>
+                <li><strong>ミッション・プロファイル:</strong> 軌道環境（GEO/LEO）に合わせた最適な信頼性グレードの選定。</li>
+                <li><strong>品質の裏付け:</strong> 年1〜2回のLVT（Life Variation Test）による長期信頼性の担保。</li>
             </ul>
+            <div class="warning-box">
+                <strong>【樹脂パッケージの取扱い注意】</strong><br>
+                安価な樹脂製品は、皮脂や湿気に弱く、宇宙での「ポップコーン現象」を招く恐れがあります。素手での接触は厳禁です。
+            </div>
         </div>
         <div class="zoom-wrap">
-            <input type="checkbox" id="zoom1" class="zoom-input" style="display:none">
+            <input type="checkbox" id="zoom1" class="zoom-input">
             <label for="zoom1" class="zoom-label">
                 <img src="shinka.png" alt="宇宙市場の進化図">
             </label>
         </div>
     </section>
 
-    <section class="section-full">
-        <h2>「100個の中からエリートを選ぶ」品質管理</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
-            <div class="content">
-                <p>STMの宇宙用デバイスは、フランス・レンヌ等の自社Fabにて一貫管理されます。故障の芽を事前に摘み取る「スクリーニング」こそが信頼性の源泉です。</p>
-                <div class="highlight-card" style="margin-top: 20px;">
-                    <h3 style="margin-top:0">厳しい試験項目</h3>
-                    <ul style="margin-bottom:0">
-                        <li><strong>バーンイン:</strong> 高温負荷で初期故障を排除。</li>
-                        <li><strong>温度サイクル:</strong> -55℃〜+125℃の過酷な熱変化。</li>
-                        <li><strong>リーク試験:</strong> 真空環境への完全密閉検証。</li>
-                        <li><strong>定加速度試験:</strong> 打ち上げ時の強大なGへの耐性。</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="highlight-card">
-                <h3 style="margin-top:0; color: #c2410c;">New Space（樹脂パッケージ）の罠</h3>
-                <p>コスト優先の樹脂パッケージは、取り扱いに細心の注意が必要です。皮脂や湿気が浸透すると、宇宙空間での破裂（ポップコーン現象）を招きます。</p>
-                <div class="info-box">
-                    <strong>⚠️ 厳禁：素手での接触</strong><br>
-                    静電気や汚染は内部回路を瞬時に破壊します。クリーンルーム準拠のハンドリングが必須です。
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section>
+        <div class="zoom-wrap">
+            <input type="checkbox" id="zoom2" class="zoom-input">
+            <label for="zoom2" class="zoom-label">
+                <img src="shinka2.png" alt="FD-SOIアーキテクチャ詳細図">
+            </label>
+        </div>
         <div class="content">
-            <h2>市場の現状分析：<br>二つの潮流とSTM</h2>
-            <p>「New Space（宇宙の民間転換）」と「パワーエレクトロニクスの高効率化」という二つの巨大な潮流が交差しています。</p>
+            <h2>FD-SOI技術：<br>物理的優位性とラッチアップ耐性</h2>
             <div class="highlight-card">
-                <h3>FD-SOIの圧倒的優位</h3>
-                <p>放射線耐性に優れ、かつ低消費電力。衛星の計算ユニットから次世代の産業機器まで、新たなデファクトスタンダードとなりつつあります。</p>
+                <p>STMが誇るFD-SOI（完全空乏型SOI）は、ウェハ上に形成された極薄の埋め込み酸化膜（BOX層）が、放射線による電荷の蓄積を物理的に遮断します。</p>
+                <h3>エンジニアリング・メリット</h3>
+                <ul>
+                    <li><strong>本質的なSEL耐性:</strong> 構造的に寄生サイリスタが存在しないため、ラッチアップを原理的に排除。</li>
+                    <li><strong>自社Fabの強み:</strong> ウェハ自体のプロセスから耐放射線性を持たせて製造可能（ESCC/QML-V認定済み）。</li>
+                    <li><strong>ASIC OEM提供:</strong> 自社の堅牢なプロセスを、他社向けオーダーメイド・チップ製造基盤としても提供。</li>
+                </ul>
             </div>
-        </div>
-        <div class="content">
-            <h2>202X年の展望と対策</h2>
-            <p>開発現場に求められるのは、環境変化に左右されない「設計の移植性」です。</p>
-            <div class="table-wrap">
-                <table>
-                    <tr>
-                        <th>技術要素</th>
-                        <th>宇宙（New Space）への利点</th>
-                    </tr>
-                    <tr>
-                        <td>FD-SOI</td>
-                        <td>自然な耐放射線性 (Soft Error抑制)</td>
-                    </tr>
-                    <tr>
-                        <td>SiC / GaN</td>
-                        <td>電源システムの小型・軽量化</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-full" style="text-align: center; background: #fff; padding: 60px; border-radius: 30px; box-shadow: var(--card-shadow);">
-        <h2 style="display: inline-block;">プロジェクトを加速させる実務ヒアリング</h2>
-        <p style="max-width: 700px; margin: 20px auto 40px;">宇宙プロジェクトのリードタイムは長く、早期のミッションプロファイル共有が不可欠です。</p>
-        <div class="table-wrap" style="text-align: left;">
-            <table>
-                <tr>
-                    <th>確認項目</th>
-                    <th>ポイント</th>
-                </tr>
-                <tr>
-                    <td>軌道・ミッション期間</td>
-                    <td>GEO / LEO / 月探査。稼働期間（5年、15年など）</td>
-                </tr>
-                <tr>
-                    <td>放射線耐性要求</td>
-                    <td>TID要求値（krad）、SEE（SELフリー要求）</td>
-                </tr>
-                <tr>
-                    <td>パッケージグレード</td>
-                    <td>セラミック（Flight級） / 樹脂（New Space級）</td>
-                </tr>
-            </table>
+            <p style="margin-top:20px;">
+                宇宙空間での「100個中10個のエリート」を選ぶスクリーニング工程（バーンイン、温度サイクル、定加速度、リーク試験）が、一度打ち上げたら修理不能なミッションの成功を決定づけます。
+            </p>
         </div>
     </section>
 </div>
 
 <footer>
     <div class="footer-content">
-        <img src="logo.png" alt="CHRONIX" class="footer-logo">
-        <p style="opacity: 0.8; font-weight: 300; max-width: 600px; margin: 0 auto;">
+        <img src="logo.png" alt="CHRONIX" style="height: 50px; margin-bottom: 25px; filter: brightness(1.5);">
+        <p style="font-size: 1.1rem; color: #fff; font-weight: 300;">
             センサーのポテンシャルを100%引き出す精密光学系との統合設計をサポートします。
         </p>
-        <a href="mailto:sales@chronix.co.jp" class="btn-contact">専門スタッフに相談する</a>
-        <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <p class="company-name" style="font-size: 1.2rem; margin-bottom: 10px;">クロニクス株式会社</p>
-            <p style="font-size: 0.9rem; opacity: 0.6;">〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
-            <p style="font-size: 0.8rem; opacity: 0.4; margin-top: 20px;">© 2026 CHRONIX. All rights reserved.</p>
+        <div class="footer-info">
+            <p class="company-name">クロニクス株式会社</p>
+            <address class="footer-address">
+                <p>〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
+                <div class="contact-grid">
+                    <p><strong>TEL</strong> 03-5322-7191</p>
+                    <p><strong>FAX</strong> 03-5322-7790</p>
+                </div>
+            </address>
         </div>
+        <a href="mailto:sales@chronix.co.jp" class="btn-contact">メールでお問い合わせ</a>
+        <p style="margin-top: 50px; font-size: 0.8rem; color: #64748b;">© 2026 CHRONIX</p>
     </div>
 </footer>
 
