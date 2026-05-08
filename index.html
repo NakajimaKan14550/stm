@@ -10,84 +10,143 @@
             --accent: #f97316;
             --bg: #f8fafc;
             --text: #1e293b;
+            --text-light: #64748b;
             --white: #ffffff;
             --border: #e2e8f0;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
         }
 
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.8; margin: 0; }
-        nav { background: var(--primary); padding: 15px 5%; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .logo { height: 45px; cursor: pointer; }
+        body { 
+            font-family: "Inter", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.8; 
+            margin: 0; 
+            word-break: break-word;
+        }
 
-        .hero { background: linear-gradient(rgba(9, 26, 45, 0.85), rgba(9, 26, 45, 0.85)), url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=1200') center/cover; color: white; padding: 150px 5% 100px; text-align: center; }
-        .hero h1 { font-size: 3.2rem; margin-bottom: 25px; font-weight: 800; letter-spacing: -0.02em; }
-        .hero p { font-size: 1.3rem; max-width: 900px; margin: 0 auto; opacity: 0.95; line-height: 1.6; }
+        /* Navigation */
+        nav { 
+            background: var(--primary); 
+            padding: 0 5%; 
+            height: 70px;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
+        }
+        .nav-logos { display: flex; align-items: center; gap: 20px; }
+        .logo-main { height: 32px; }
+        .logo-sub { height: 28px; filter: brightness(0) invert(1); opacity: 0.9; }
+        .nav-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-        .intro-text { font-size: 1.15rem; margin-bottom: 80px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(9, 26, 45, 0.8), rgba(9, 26, 45, 0.9)), url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=1200') center/cover; 
+            color: white; 
+            padding: 120px 5% 100px; 
+            text-align: center; 
+        }
+        .hero-st-logo { width: 80px; margin-bottom: 30px; filter: brightness(0) invert(1); }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 25px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; }
+        .hero p { font-size: clamp(1rem, 2vw, 1.25rem); max-width: 800px; margin: 0 auto; opacity: 0.9; font-weight: 300; }
 
-        section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 120px; align-items: start; }
+        /* Container & Grid */
+        .container { max-width: 1100px; margin: 0 auto; padding: 80px 24px; }
+        .intro-text { font-size: 1.2rem; margin-bottom: 100px; text-align: center; max-width: 850px; margin-left: auto; margin-right: auto; color: var(--text-light); }
+
+        section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 120px; align-items: start; }
+        .section-full { display: block; margin-bottom: 120px; }
         @media (max-width: 900px) { section { grid-template-columns: 1fr; gap: 40px; } }
 
-        h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; line-height: 1.2; border-left: 8px solid var(--accent); padding-left: 20px; }
-        h3 { font-size: 1.6rem; color: var(--primary); margin-top: 30px; margin-bottom: 15px; display: flex; align-items: center; }
-        h3::before { content: '■'; color: var(--accent); margin-right: 10px; font-size: 1rem; }
-
-        .content ul { padding-left: 20px; }
-        .content li { margin-bottom: 12px; }
-
-        .highlight-card { background: var(--white); padding: 40px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); margin-top: 20px; }
-        .info-box { background: #f1f5f9; padding: 25px; border-radius: 8px; margin-top: 20px; font-size: 0.95rem; }
-
-        /* スクリーニング比較テーブル */
-        .table-wrap { overflow-x: auto; margin: 40px 0; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { border: 1px solid var(--border); padding: 15px; text-align: left; font-size: 0.9rem; }
-        th { background: var(--primary); color: white; }
-
-        /* クリック拡大機能 (Pure CSS) */
-        .zoom-wrap { position: relative; }
-        .zoom-input { display: none; }
-        .zoom-label { cursor: zoom-in; display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.3s; }
-        .zoom-label:hover { transform: scale(1.02); }
-        .zoom-label img { width: 100%; display: block; }
+        /* Typography */
+        h2 { font-size: 2rem; color: var(--primary); margin-bottom: 30px; line-height: 1.3; font-weight: 700; position: relative; }
+        h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin-top: 15px; }
+        h3 { font-size: 1.4rem; color: var(--primary); margin-top: 30px; margin-bottom: 15px; font-weight: 700; }
         
-        .zoom-input:checked + .zoom-label { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; background: rgba(9, 26, 45, 0.98); display: flex; align-items: center; justify-content: center; cursor: zoom-out; border-radius: 0; border: none; }
-        .zoom-input:checked + .zoom-label img { width: auto; max-width: 85%; max-height: 85%; }
-        .zoom-input:checked + .zoom-label::after { content: "CLOSE ✕"; position: absolute; top: 40px; right: 40px; color: white; background: var(--accent); padding: 12px 25px; font-weight: bold; border-radius: 8px; }
+        .content p { margin-bottom: 20px; }
+        .content ul { padding-left: 20px; list-style: none; }
+        .content li { margin-bottom: 12px; position: relative; padding-left: 25px; }
+        .content li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+
+        /* UI Elements */
+        .highlight-card { 
+            background: var(--white); 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: var(--card-shadow); 
+            border: 1px solid var(--border); 
+            transition: transform 0.3s ease;
+        }
+        .highlight-card:hover { transform: translateY(-5px); }
+        
+        .info-box { 
+            background: #fefce8; 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin-top: 25px; 
+            font-size: 0.95rem; 
+            border-left: 4px solid #eab308;
+            color: #854d0e;
+        }
+
+        /* Table Design */
+        .table-wrap { overflow-x: auto; margin: 40px 0; border-radius: 12px; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 18px; text-align: left; font-size: 0.95rem; border-bottom: 1px solid var(--border); }
+        th { background: #f1f5f9; color: var(--primary); font-weight: 700; }
+        tr:last-child td { border-bottom: none; }
+
+        /* Image Zoom */
+        .zoom-label { cursor: zoom-in; display: block; border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); border: 1px solid var(--border); transition: 0.3s; }
+        .zoom-label:hover { filter: brightness(1.1); }
+        .zoom-label img { width: 100%; display: block; }
+        .zoom-input:checked + .zoom-label { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; background: rgba(9, 26, 45, 0.98); display: flex; align-items: center; justify-content: center; cursor: zoom-out; }
 
         /* Footer */
-        footer { background: var(--primary); color: white; padding: 100px 5% 50px; }
+        footer { background: var(--primary); color: white; padding: 80px 5% 40px; }
         .footer-content { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .footer-info { margin: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
-        .company-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; }
-        .footer-address { font-style: normal; line-height: 1.8; opacity: 0.85; font-weight: 300; }
-        .contact-grid { display: flex; justify-content: center; gap: 40px; margin: 25px 0; }
-        .btn-contact { display: inline-block; background: var(--accent); color: white; padding: 20px 50px; text-decoration: none; border-radius: 4px; font-weight: 700; transition: all 0.3s ease; }
-        .btn-contact:hover { background: #ea580c; transform: translateY(-2px); }
+        .footer-logo { height: 40px; margin-bottom: 30px; filter: brightness(1.5); }
+        .btn-contact { 
+            display: inline-block; 
+            background: var(--accent); 
+            color: white; 
+            padding: 18px 45px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            transition: 0.3s;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+        }
+        .btn-contact:hover { background: #fb923c; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(249, 115, 22, 0.4); }
 
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="https://nakajimakan14550.github.io/home/">
-        <img src="logo.png" alt="CHRONIX" class="logo">
-    </a>
+    <div class="nav-logos">
+        <a href="https://nakajimakan14550.github.io/home/">
+            <img src="logo.png" alt="CHRONIX" class="logo-main">
+        </a>
+        <div class="nav-divider"></div>
+        <img src="stm.png" alt="STMicroelectronics" class="logo-sub">
+    </div>
 </nav>
 
 <div class="hero">
-    <div class="hero">
-    <!-- タイトルの上にロゴを配置 -->
-    <img src="stm.png" 
-         alt="STMicroelectronics" 
-         style="width: 100px; margin-bottom: 20px; filter: brightness(0) invert(1);">
+    <img src="stm.png" alt="STMicroelectronics" class="hero-st-logo">
     <h1>New Spaceの衝撃と半導体</h1>
-    <p>低軌道コンステレーションが求める「信頼性」と「量産性」の不可避な交差点。<br>STMicroelectronicsのFD-SOI技術が、宇宙ビジネスの物理的限界を再定義します。</p>
+    <p>低軌道コンステレーションが求める「信頼性」と「量産性」の不可避な交差点。STMicroelectronicsのFD-SOI技術が、宇宙ビジネスの物理的限界を再定義します。</p>
 </div>
 
 <div class="container">
     <div class="intro-text">
-        宇宙産業は、一過性の「国家プロジェクト」から継続的な「商業インフラ」へと変貌を遂げました。この変化は、半導体に対して、従来の耐放射線性スペックに加え、圧倒的な量産性とコスト効率を求めています。
+        宇宙産業は一過性の「国家プロジェクト」から継続的な「商業インフラ」へと変貌を遂げました。この変化は半導体に対し、従来の耐放射線性スペックに加え、圧倒的な量産性とコスト効率を求めています。
     </div>
 
     <section>
@@ -101,117 +160,78 @@
             </ul>
         </div>
         <div class="zoom-wrap">
-            <input type="checkbox" id="zoom1" class="zoom-input">
+            <input type="checkbox" id="zoom1" class="zoom-input" style="display:none">
             <label for="zoom1" class="zoom-label">
                 <img src="shinka.png" alt="宇宙市場の進化図">
             </label>
         </div>
     </section>
 
-    <section style="display: block;">
-        <h2>「100個の中からエリートの10個を選ぶ」品質管理</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+    <section class="section-full">
+        <h2>「100個の中からエリートを選ぶ」品質管理</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
             <div class="content">
-                <p>STMの宇宙用デバイスは、フランス・レンヌ等の自社Fabにて、ウェハ検査からパッケージングまで一貫して管理されます。修理不能な宇宙空間において、故障の芽を事前に摘み取る「スクリーニング」こそが信頼性の源泉です。</p>
-                <h3>厳しいスクリーニング試験項目</h3>
-                <ul>
-                    <li><strong>バーンイン（Burn-in）:</strong> 高温負荷で初期故障個体を排除。</li>
-                    <li><strong>温度サイクル試験:</strong> -55℃〜+125℃の激しい熱変化を与え、構造的欠陥を確認。</li>
-                    <li><strong>リーク試験:</strong> 真空環境に対応する完全密閉（ハーメチック）の検証。</li>
-                    <li><strong>定加速度試験:</strong> 打ち上げ時の強大なGに耐えうるワイヤボンディング強度を確認。</li>
-                </ul>
+                <p>STMの宇宙用デバイスは、フランス・レンヌ等の自社Fabにて一貫管理されます。故障の芽を事前に摘み取る「スクリーニング」こそが信頼性の源泉です。</p>
+                <div class="highlight-card" style="margin-top: 20px;">
+                    <h3 style="margin-top:0">厳しい試験項目</h3>
+                    <ul style="margin-bottom:0">
+                        <li><strong>バーンイン:</strong> 高温負荷で初期故障を排除。</li>
+                        <li><strong>温度サイクル:</strong> -55℃〜+125℃の過酷な熱変化。</li>
+                        <li><strong>リーク試験:</strong> 真空環境への完全密閉検証。</li>
+                        <li><strong>定加速度試験:</strong> 打ち上げ時の強大なGへの耐性。</li>
+                    </ul>
+                </div>
             </div>
             <div class="highlight-card">
-                <h3>New Space（樹脂パッケージ）の罠</h3>
-                <p>コスト優先の樹脂パッケージは、取り扱いに細心の注意が必要です。</p>
+                <h3 style="margin-top:0; color: #c2410c;">New Space（樹脂パッケージ）の罠</h3>
+                <p>コスト優先の樹脂パッケージは、取り扱いに細心の注意が必要です。皮脂や湿気が浸透すると、宇宙空間での破裂（ポップコーン現象）を招きます。</p>
                 <div class="info-box">
                     <strong>⚠️ 厳禁：素手での接触</strong><br>
-                    皮脂や湿気が樹脂の微細な穴から浸透し、宇宙空間での<strong>「ポップコーン現象（パッケージ破裂）」</strong>や、静電気による内部回路の瞬時焼き切れ（ESD破壊）を招きます。
+                    静電気や汚染は内部回路を瞬時に破壊します。クリーンルーム準拠のハンドリングが必須です。
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 追加セクション：市場の現状分析とSTMの優位性 -->
     <section>
         <div class="content">
-            <h2>市場の現状分析：<br>二つの潮流とSTMの立ち位置</h2>
-            <p>現在、半導体市場では「New Space（宇宙の民間転換）」と「パワーエレクトロニクスの高効率化」という二つの巨大な潮流が交差しています。その先行指標となっているのが、STマイクロエレクトロニクスの動向です。</p>
-            
+            <h2>市場の現状分析：<br>二つの潮流とSTM</h2>
+            <p>「New Space（宇宙の民間転換）」と「パワーエレクトロニクスの高効率化」という二つの巨大な潮流が交差しています。</p>
             <div class="highlight-card">
-                <h3>FD-SOI：宇宙と地上の境界をなくす技術</h3>
-                <p>STMの核となる<strong>FD-SOI（完全空乏型シリコン・オン・インシュレータ）</strong>プロセスは、従来のバルクCMOSに比べ放射線耐性に優れ、かつ圧倒的な低消費電力を実現。衛星の計算ユニットから次世代の産業機器まで、新たなデファクトスタンダードとなりつつあります。</p>
-            </div>
-
-            <div class="info-box">
-                <strong>浮かび上がる「静かなる課題」</strong><br>
-                自動運転やドローンなど、極限環境での信頼性が求められる現代では、「宇宙用」と「産業用」の境界線が消失しています。安易な一般品への代替は、故障率の増大とTCO（総保有コスト）の悪化を招きます。
+                <h3>FD-SOIの圧倒的優位</h3>
+                <p>放射線耐性に優れ、かつ低消費電力。衛星の計算ユニットから次世代の産業機器まで、新たなデファクトスタンダードとなりつつあります。</p>
             </div>
         </div>
         <div class="content">
             <h2>202X年の展望と対策</h2>
-            <p>今後、開発現場に求められるのは、環境変化に左右されない「設計の移植性」と「強固な供給網」です。</p>
-            
-            <ul>
-                <li><strong>プロセスの共通化戦略:</strong> FD-SOIのように、民生用の低消費電力ニーズと宇宙の耐放射線性を同一プロセスでカバーできる技術を核に据えるべきです。</li>
-                <li><strong>認証とトレーサビリティ:</strong> ESCCやQML-V等の厳格な認定ラインを持つSTMとの連携は、単なる調達を超えた「品質の保険」となります。</li>
-                <li><strong>SiCへの早期移行:</strong> グローバルな供給網を持つメーカーのロードマップに沿うことで、将来的な供給停止リスクを最小限に抑えられます。</li>
-            </ul>
-
+            <p>開発現場に求められるのは、環境変化に左右されない「設計の移植性」です。</p>
             <div class="table-wrap">
                 <table>
                     <tr>
                         <th>技術要素</th>
                         <th>宇宙（New Space）への利点</th>
-                        <th>地上（産業・車載）への波及</th>
                     </tr>
                     <tr>
                         <td>FD-SOI</td>
                         <td>自然な耐放射線性 (Soft Error抑制)</td>
-                        <td>超低消費電力・高効率処理</td>
                     </tr>
                     <tr>
                         <td>SiC / GaN</td>
                         <td>電源システムの小型・軽量化</td>
-                        <td>EV航続距離延長・産業機器省エネ</td>
                     </tr>
                 </table>
             </div>
         </div>
     </section>
 
-    <section style="margin-top: 100px;">
-        <div class="zoom-wrap">
-            <input type="checkbox" id="zoom2" class="zoom-input">
-            <label for="zoom2" class="zoom-label">
-                <img src="shinka2.png" alt="FD-SOIアーキテクチャ詳細図">
-            </label>
-        </div>
-        <div class="content">
-            <h2>FD-SOI技術：<br>物理的優位性とラッチアップ耐性</h2>
-            <div class="highlight-card">
-                <p>STMicroelectronicsのFD-SOI技術は、ウェハ上に形成された極薄の絶縁膜（BOX層）が、宇宙線による電荷の蓄積を遮断します。</p>
-                <h3>エンジニアリング・メリット</h3>
-                <ul>
-                    <li><strong>SEL（シングルイベント・ラッチアップ）の完全排除:</strong> 寄生サイリスタの形成を物理的に抑え、ラッチアップのリスクをゼロに近づけます。</li>
-                    <li><strong>電力効率の最適化:</strong> ボディバイアス制御により、低電圧動作でも高い処理能力を維持。衛星の限られた電力を有効活用します。</li>
-                </ul>
-            </div>
-            <div class="info-box" style="background: #fff7ed; border: 1px solid var(--accent);">
-                <strong>【他社向けOEM提供】</strong><br>
-                STMはこの圧倒的な製造プラットフォームを自社製品だけでなく、他社向けRad-Hard ASIC製造（OEM）としても提供。宇宙で「確実に動く」ための標準基盤となっています。
-            </div>
-        </div>
-    </section>
-
-    <section style="display: block;">
-        <h2>プロジェクトを加速させる「実務ヒアリング」</h2>
-        <p>宇宙プロジェクトのリードタイムは長く、FM品（フライト用）で24週間以上を要します。スムーズな供給には、早期のミッションプロファイル共有が不可欠です。</p>
-        <div class="table-wrap">
+    <section class="section-full" style="text-align: center; background: #fff; padding: 60px; border-radius: 30px; box-shadow: var(--card-shadow);">
+        <h2 style="display: inline-block;">プロジェクトを加速させる実務ヒアリング</h2>
+        <p style="max-width: 700px; margin: 20px auto 40px;">宇宙プロジェクトのリードタイムは長く、早期のミッションプロファイル共有が不可欠です。</p>
+        <div class="table-wrap" style="text-align: left;">
             <table>
                 <tr>
-                    <th>項目</th>
-                    <th>確認のポイント</th>
+                    <th>確認項目</th>
+                    <th>ポイント</th>
                 </tr>
                 <tr>
                     <td>軌道・ミッション期間</td>
@@ -219,15 +239,11 @@
                 </tr>
                 <tr>
                     <td>放射線耐性要求</td>
-                    <td>TID要求値（krad）、SEE（SELフリー要求の有無）</td>
+                    <td>TID要求値（krad）、SEE（SELフリー要求）</td>
                 </tr>
                 <tr>
-                    <td>パッケージ・グレード</td>
+                    <td>パッケージグレード</td>
                     <td>セラミック（Flight級） / 樹脂（New Space級）</td>
-                </tr>
-                <tr>
-                    <td>商流・スケジュール</td>
-                    <td>試作（EM品）時期、量産（FM品）時期、最終ユーザー（EUS）</td>
                 </tr>
             </table>
         </div>
@@ -236,22 +252,16 @@
 
 <footer>
     <div class="footer-content">
-        <img src="logo.png" alt="CHRONIX" style="height: 50px; margin-bottom: 25px; filter: brightness(1.5);">
-        <p style="font-size: 1.1rem; color: #fff; font-weight: 300;">
+        <img src="logo.png" alt="CHRONIX" class="footer-logo">
+        <p style="opacity: 0.8; font-weight: 300; max-width: 600px; margin: 0 auto;">
             センサーのポテンシャルを100%引き出す精密光学系との統合設計をサポートします。
         </p>
-        <div class="footer-info">
-            <p class="company-name">クロニクス株式会社</p>
-            <address class="footer-address">
-                <p>〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
-                <div class="contact-grid">
-                    <p><strong>TEL</strong> 03-5322-7191</p>
-                    <p><strong>FAX</strong> 03-5322-7790</p>
-                </div>
-            </address>
+        <a href="mailto:sales@chronix.co.jp" class="btn-contact">専門スタッフに相談する</a>
+        <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p class="company-name" style="font-size: 1.2rem; margin-bottom: 10px;">クロニクス株式会社</p>
+            <p style="font-size: 0.9rem; opacity: 0.6;">〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
+            <p style="font-size: 0.8rem; opacity: 0.4; margin-top: 20px;">© 2026 CHRONIX. All rights reserved.</p>
         </div>
-        <a href="mailto:sales@chronix.co.jp" class="btn-contact">メールでお問い合わせ</a>
-        <p style="margin-top: 50px; font-size: 0.8rem; color: #64748b;">© 2026 CHRONIX</p>
     </div>
 </footer>
 
